@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Pdf Viewer Demo</title>
+
+    <style>
+        /* Next & previous buttons */
+        .pdf_prev, .pdf_next {
+            position: relative;
+            top: 50%;
+            width: auto;
+            /*margin-top: -22px;*/
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        /* Position the "next button" to the right */
+        .pdf_next {
+            left: 75%;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .pdf_prev {
+            left: 0;
+            /* On hover, add a black background color with a little bit see-through */
+        }
+
+        .pdf_button {
+            cursor: pointer;
+        }
+
+            .pdf_button:hover, .pdf_button:hover {
+                background-color: rgba(0,0,0,0.8);
+            }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <div id="PDFView" style="height: 736px; width: 414px;">
+        <a class="pdf_prev" onclick="" style="">&#10094;</a>
+        <a class="pdf_next" onclick="" style="">&#10095;</a>
+        <canvas id="pdf" style="width: 100%; height: auto;">   </canvas>
+    </div>
+
+    <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script src="PdfViewer.js"></script>
+
+</body>
+</html>
