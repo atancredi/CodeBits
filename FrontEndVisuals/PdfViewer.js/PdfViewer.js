@@ -6,12 +6,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.w
 
 //core della funzione rendering
 function CoreRendering(page, pageNumber, pdfPath) {
-
-    //Creazione canvas
-    MainSelector.append('<canvas id="pdf" style="width: 100%; height: auto;"></canvas>');
-
     var NumOfPages = page["_transport"]["_numPages"];
-    console.log(NumOfPages);
 
     var scale = 1.5;
     var viewport = page.getViewport({ scale: scale });
@@ -31,57 +26,63 @@ function CoreRendering(page, pageNumber, pdfPath) {
         var prev = $(".pdf_prev");
         var next = $(".pdf_next");
 
-        switch (pageNumber) {
+        if (NumOfPages > 1)
+            switch (pageNumber) {
 
-            case 1: //mostro solo il next
-                if (prev.hasClass("pdf_button")) {
-                    prev.removeClass("pdf_button");
-                }
-                next.addClass("pdf_button");
+                case 1: //mostro solo il next
+                    if (prev.hasClass("pdf_button")) prev.removeClass("pdf_button");
+					if (prev.css("display") != "none") prev.hide();
+					
+					if(next.css("display") === "none") next.show();
+                    next.addClass("pdf_button");
 
-                prev.off("click");
-                next.off("click");
+                    prev.off("click");
+                    next.off("click");
 
-                next.on("click", function (e) {
-                    WrapRendering(pdfPath, pageNumber + 1);
-                    console.log("go to page " + (pageNumber + 1))
-                });
-                return;
+                    next.on("click", function (e) {
+                        WrapRendering(pdfPath, pageNumber + 1);
+                        console.log("go to page " + (pageNumber + 1))
+                    });
+                    return;
 
-            case NumOfPages: //mostro solo il prev
-                if (next.hasClass("pdf_button")) {
-                    next.removeClass("pdf_button");
-                }
-                prev.addClass("pdf_button");
+                case NumOfPages: //mostro solo il prev
+                    if (next.hasClass("pdf_button")) next.removeClass("pdf_button");
+					if (next.css("display") != "none") next.hide();
+					
+					if(prev.css("display") === "none") prev.show();
+                    prev.addClass("pdf_button");
 
-                prev.off("click");
-                next.off("click");
+                    prev.off("click");
+                    next.off("click");
 
-                prev.on("click", function (e) {
-                    WrapRendering(pdfPath, pageNumber - 1);
-                    console.log("go to page " + (pageNumber - 1))
-                });
-                return;
+                    prev.on("click", function (e) {
+                        WrapRendering(pdfPath, pageNumber - 1);
+                        console.log("go to page " + (pageNumber - 1))
+                    });
+                    return;
 
-            default:
-                next.addClass("pdf_button");
-                prev.addClass("pdf_button");
+                default:
+					if(prev.css("display") === "none") prev.show();
+					if(next.css("display") === "none") next.show();
+				
+                    prev.addClass("pdf_button");
+                    next.addClass("pdf_button");
 
-                prev.off("click");
-                next.off("click");
+                    prev.off("click");
+                    next.off("click");
 
-                prev.on("click", function (e) {
-                    WrapRendering(pdfPath, pageNumber - 1);
-                    console.log("go to page " + (pageNumber - 1))
-                });
+                    prev.on("click", function (e) {
+                        WrapRendering(pdfPath, pageNumber - 1);
+                        console.log("go to page " + (pageNumber - 1))
+                    });
 
-                next.on("click", function (e) {
-                    WrapRendering(pdfPath, pageNumber + 1);
-                    console.log("go to page " + (pageNumber + 1))
-                });
+                    next.on("click", function (e) {
+                        WrapRendering(pdfPath, pageNumber + 1);
+                        console.log("go to page " + (pageNumber + 1))
+                    });
 
-                return;
-        }
+                    return;
+            }
     });
 }
 
