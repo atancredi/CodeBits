@@ -1,12 +1,17 @@
-﻿
 var url = "http://192.168.2.84/owexpress/PDF/2021/2021-09-21/2021092149603785.pdf";
+
+var MainSelector = $("#PDFView");
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
 
 //core della funzione rendering
 function CoreRendering(page, pageNumber, pdfPath) {
 
-    console.log(page["_transport"]["_numPages"]); //numero pagine
+    //Creazione canvas
+    MainSelector.append('<canvas id="pdf" style="width: 100%; height: auto;"></canvas>');
+
+    var NumOfPages = page["_transport"]["_numPages"];
+    console.log(NumOfPages);
 
     var scale = 1.5;
     var viewport = page.getViewport({ scale: scale });
@@ -29,20 +34,54 @@ function CoreRendering(page, pageNumber, pdfPath) {
         switch (pageNumber) {
 
             case 1: //mostro solo il next
+                if (prev.hasClass("pdf_button")) {
+                    prev.removeClass("pdf_button");
+                }
                 next.addClass("pdf_button");
-                break;
 
+                prev.off("click");
+                next.off("click");
+
+                next.on("click", function (e) {
+                    WrapRendering(pdfPath, pageNumber + 1);
+                    console.log("go to page " + (pageNumber + 1))
+                });
+                return;
+
+            case NumOfPages: //mostro solo il prev
+                if (next.hasClass("pdf_button")) {
+                    next.removeClass("pdf_button");
+                }
+                prev.addClass("pdf_button");
+
+                prev.off("click");
+                next.off("click");
+
+                prev.on("click", function (e) {
+                    WrapRendering(pdfPath, pageNumber - 1);
+                    console.log("go to page " + (pageNumber - 1))
+                });
+                return;
+
+            default:
+                next.addClass("pdf_button");
+                prev.addClass("pdf_button");
+
+                prev.off("click");
+                next.off("click");
+
+                prev.on("click", function (e) {
+                    WrapRendering(pdfPath, pageNumber - 1);
+                    console.log("go to page " + (pageNumber - 1))
+                });
+
+                next.on("click", function (e) {
+                    WrapRendering(pdfPath, pageNumber + 1);
+                    console.log("go to page " + (pageNumber + 1))
+                });
+
+                return;
         }
-
-        //Aggiungere qui gli handlers
-        prev.on("click", function (e) {
-
-        });
-
-        next.on("click", function (e) {
-            WrapRendering(pdfPath, pageNumber + 1)
-        });
-
     });
 }
 
@@ -52,7 +91,10 @@ function WrapRendering(pdfPath, pageNumber) {
 
     loadingTask.promise.then(function (pdf) {
 
-        pdf.getPage(pageNumber).then(function (page) { CoreRendering(page, pageNumber, pdfPath) });
+        pdf.getPage(pageNumber).then(function (page) {
+            DestroyRendering();
+            CoreRendering(page, pageNumber, pdfPath);
+        });
 
     }, function (reason) {
         console.error(reason);
@@ -61,7 +103,7 @@ function WrapRendering(pdfPath, pageNumber) {
 
 //distruttore della canvas
 function DestroyRendering() {
-
+    $("#pdf").remove();
 }
 
 WrapRendering(url, 1);
