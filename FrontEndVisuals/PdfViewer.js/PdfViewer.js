@@ -25,8 +25,8 @@ function CoreRendering(page, pageNumber, pdfPath) {
 
         var prev = $(".pdf_prev");
         var next = $(".pdf_next");
-
-        if (NumOfPages > 1)
+	
+	if (NumOfPages > 1)
             switch (pageNumber) {
 
                 case 1: //mostro solo il next
@@ -83,6 +83,11 @@ function CoreRendering(page, pageNumber, pdfPath) {
 
                     return;
             }
+		else {
+			prev.hide();
+			next.hide();
+		}
+        
     });
 }
 
