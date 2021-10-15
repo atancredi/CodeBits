@@ -9,4 +9,7 @@ Archive of code snippets for making coding easier :)<br/>
 - FrontEndVisuals: visual effects made for front-end web developing<br>
   - <b>PdfViewer.js:</b> an async JavaScript viewer for PDF file inside a web page
   - <b>waitMe.js:</b> fork from vadimsva/waitMe
-  - <b>Cssfix</b>: initial fix for css properties
+  - <b>Cssfix:</b> initial fix for css properties
+  
+ - Logic: a series of explaination on how to resolve the most common logic problems in (especially scientific) programming<br>
+  - <b>Numbers:</b> operations on numbers
