@@ -7,6 +7,7 @@ Archive of code snippets for making coding easier :)<br/>
 - DataManipulation: serialization of data, evaluation of arrays and objects<br>
   - <b>empty.js:</b> states if an array or class - as well as every other nested object - is empty
   - <b>JsonParser.py:</b> conversion between JSON and XLSX, XML, CSV etc. etc.
+  - <b>sqlite.py:</b> library for efficient management of local sqlite dbs in python apps
 
 - FrontEndVisuals: visual effects made for front-end web developing<br>
   - <b>PdfViewer.js:</b> an async JavaScript viewer for PDF file inside a web page
