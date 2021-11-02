@@ -14,5 +14,7 @@ Archive of code snippets for making coding easier :)<br/>
   - <b>waitMe.js:</b> fork from vadimsva/waitMe
   - <b>Cssfix:</b> initial fix for css properties
   
+ - FrontEndDesigns: library of examples and designs made by me
+  
 - Logic: a series of explaination on how to resolve the most common logic problems in (especially scientific) programming<br>
   - <b>Numbers:</b> operations on numbers
