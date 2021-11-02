@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Concept</title>
+
+    <style>
+        html {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+            overflow-x: hidden;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit
+        }
+
+        /* --------------------------------------- */
+
+        #page{
+            height: 100vh;
+            width: 100%;
+        }
+
+        #widget {
+            background: black;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 12px 0 rgba(0,0,0,.1),0 10px 30px 0 rgba(0,0,0,.2);
+            height: 25.625em;
+            left: 5em;
+            margin: -12.8125em 0 0;
+            position: absolute;
+            top: 50%;
+            transition: transform .5s cubic-bezier(.77,0,.175,1);
+            width: 17.5em;
+            z-index: 30;
+        }
+
+        #menuBtn {
+            position: absolute;
+            right: 1em;
+            top: 1em;
+            width: 5em;
+            height: 3em;
+            display: flex;
+            justify-content: center;
+            border-radius: 5px;
+            box-shadow: 0 0 6px 0 rgba(0,0,0,.1),0 5px 15px 0 rgba(0,0,0,.2);
+        }
+
+            #menuBtn:hover {
+                background: rgba(0,0,0,.2);
+            }
+
+        .menuText {
+            display: block;
+            height: max-content;
+            margin: auto;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div id="page">
+
+        <div id="widget">
+
+        </div>
+
+        <div id="menuBtn">
+            <span class="menuText">MENU</span>
+        </div>
+
+    </div>
+
+</body>
+</html>

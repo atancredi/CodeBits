@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Concept2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/brands.min.css" />
+
+    <script src="../resources/js/jquery.js"></script>
+    <style>
+
+        html {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+            overflow-x: hidden;
+            background: black;
+            display: flex;
+            justify-content: center;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit
+        }
+
+        @font-face {
+            font-family: NeutralFace;
+            src: url("../resources/fonts/neutralface.otf") format("opentype");
+        }
+
+        i {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* --------------------------------------- */
+
+        #grid{
+            width: 100vh;
+            height: 100vh;
+            display:flex;
+            flex-direction: row;
+        }
+
+        #gridDx {
+            width: 33.333%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+        }
+
+        #gridSx{
+            width: 66.666%;
+        }
+
+        .gridCol {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+            height: 100%;
+        }
+
+            .gridCol::-webkit-scrollbar {
+                display: none;
+            }
+
+        .coverImg {
+            display: block;
+            width: 100%;
+            margin: 0;
+        }
+
+        .row {
+            height: 33.33%;
+            padding: 0 10px 0 0;
+        }
+
+        .rowTop {
+            height: 83.35%;
+            background-color: white;
+            background-clip: content-box;
+        }
+
+        .rowBottom {
+            height: 16.65%;
+            background-color: white;
+            background-clip: content-box;
+        }
+
+        #row1 {
+            font-family: NeutralFace;
+        }
+
+        .rowTop {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .rowTopText{
+            display: block;
+            margin: auto;
+            font-size: 4vw;
+        }
+
+        #row3 {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .rowLast {
+            height: 100%;
+            width: 50%;
+        }
+
+        .rowDx {
+        }
+
+        .rowSx {
+            display: flex;
+            justify-content: center;
+        }
+
+        .rowDxTop {
+            height: 66.66%;
+            width: 100%;
+            background-color: white;
+            background-clip: content-box;
+            font-family: NeutralFace;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .rowDxTopText{
+            margin: auto;
+            font-size: 1.25rem;
+        }
+
+        .rowDxBottom {
+            height: 33.33%;
+            width: 100%;
+            background-color: white;
+            background-clip: content-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        .iconContainer {
+            height: max-content;
+            margin: auto;
+        }
+
+            .iconContainer i {
+                display: block;
+                font-size: 4em;
+                vertical-align: middle;
+            }
+
+    </style>
+
+</head>
+<body>
+
+    <div id="grid">
+        <div class="gridCol" id="gridSx">
+
+            <div class="row" id="row1">
+
+                <div class="rowTop" style="padding: 0 0 5px 0;">
+
+                    <span class="rowTopText">SABBIEMOBILI</span>
+
+                </div>
+
+                <div class="rowBottom" style="padding: 0 0 5px 0;">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(147,96,167,1) 89%);"></div>
+                </div>
+
+            </div>
+
+            <div class="row" id="row2">
+
+                <div class="rowTop" style="padding: 0 0 5px 0; justify-content: space-evenly;">
+
+                    <img class="clessidra" src="sabbie/logo2.png" />
+                    <img class="clessidra" src="sabbie/logo2.png" />
+                    <img class="clessidra" src="sabbie/logo2.png" />
+
+                </div>
+
+                <div class="rowBottom" style="padding: 0 0 5px 0;">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(147,96,167,1) 89%);"></div>
+                </div>
+
+            </div>
+
+            <div class="row" id="row3">
+
+                <div class="rowSx rowLast" style="padding: 0 5px 0 0">
+                    <img src="sabbie/5.png" class="coverImg" style="margin: auto 0;" />
+                </div>
+
+                <div class="rowDx rowLast" style="padding: 0">
+
+                    <div class="rowDxTop" style="padding: 0 0 5px 0">
+                        <div class="rowDxTopText">
+                            PENTECOSTE<br />Sabbie Mobili ft. NONe, Dj BS
+                        </div>
+                    </div>
+
+                    <div class="rowDxBottom">
+                        <span class="iconContainer">
+                            <i class="fab fa-instagram"></i>
+                        </span>
+                        <span class="iconContainer">
+                            <i class="fab fa-spotify"></i>
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="gridCol" id="gridDx">
+            <img src="sabbie/5.png" class="coverImg" />
+            <img src="sabbie/4.png" class="coverImg" />
+            <img src="sabbie/3.png" class="coverImg" />
+            <img src="sabbie/2.png" class="coverImg" />
+            <img src="sabbie/1.png" class="coverImg" />
+            <img src="sabbie/0.png" class="coverImg" />
+        </div>
+    </div>
+
+</body>
+</html>

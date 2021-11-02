@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="../resources/js/jquery.js"></script>
+
+    <link rel="stylesheet" href="../resources/hamburgers.css" />
+
+    <style>
+
+        html {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+            overflow-x: hidden;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit
+        }
+
+        /*-------------------------------*/
+
+        @font-face {
+            font-family: NeutralFace;
+            src: url("../resources/fonts/neutralface.otf") format("opentype");
+        }
+
+        #pageContent{
+            width: 100%;
+            height: 100vh;
+        }
+
+        #menu {
+            
+            margin-left: 40%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menuEntry {
+            font-family: NeutralFace;
+            height: max-content;
+            font-size: 70px;
+            white-space: nowrap;
+        }
+
+        .menuEntryDynamic{
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        }
+
+        .menuEntryHover {
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            
+        }
+
+        .menuEntryHoverText {
+            font-size: 40px;
+            height: max-content;
+            width: max-content;
+            white-space: nowrap;
+            position: absolute;
+            left: 0;
+            color: #C2C2C2;
+        }
+
+        /*-------------------------------*/
+
+        #main{
+
+        }
+
+        .hamburger{
+            position: absolute;
+            top: 0.3em;
+            left: 0.2em;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div id="pageContent">
+
+        <div id="main">
+
+            <button class="hamburger hamburger--squeeze" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+
+        </div>
+
+        <div id="menu" style="display: none;">
+            <div class="menuEntry">
+                Menu 1
+            </div>
+            <div class="menuEntry">
+                Menu 2
+            </div>
+            <div class="menuEntry">
+                Menu 3 prova ababab
+            </div>
+            <div class="menuEntry">
+                TESTO PIU LUNGOOOOOO
+            </div>
+            <div class="menuEntry">
+                Link
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        //Add the hover effect on the menu entries
+        var CurrentText = "";
+        $(".menuEntry").on("mouseenter", function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            CurrentText = $(this).text();
+
+            //add styles
+            $(this).addClass("menuEntryDynamic");
+
+            //contruct the text shown on hover
+            var HoverText = '<div class="menuEntryHover"><span class="menuEntryHoverText" style="display: none;">' + CurrentText.toLowerCase() + '</span></div>';
+
+            var parentHeight = $(".menuEntry").css("height");
+
+            $(this).html(HoverText);
+
+            //count how many times i have to duplicate the currentText to fit in all the viewport width
+            var HoverTextWidth = ($(".menuEntryHoverText").css("width")).replace("px","");
+            var viewportHeight = $(window).width();
+            var innerText = CurrentText.toLowerCase().repeat(Math.ceil(viewportHeight / HoverTextWidth));;
+            $(this).find(".menuEntryHoverText").text(innerText);
+            
+            //add styles on the span
+            $(this).find(".menuEntryHoverText").show();
+            $(".menuEntryHover").css("height", parentHeight);
+
+
+        }).on("mouseleave", function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            $(this).removeClass("menuEntryDynamic");
+            $(this).text(CurrentText);
+
+        });
+
+    </script>
+
+    <script>
+        //handler for the hamburger menu
+        $(".hamburger").on("click", function (e) {
+            $(this).toggleClass("is-active");
+            $("#menu").toggle();
+        });
+    </script>
+
+</body>
+</html>
