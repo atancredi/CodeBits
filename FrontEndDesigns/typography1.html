@@ -177,7 +177,9 @@
         //handler for the hamburger menu
         $(".hamburger").on("click", function (e) {
             $(this).toggleClass("is-active");
-            $("#menu").toggle();
+            $("#menu").slideToggle("slow", function () {
+                // Animation complete.
+            });
         });
     </script>
 
