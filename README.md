@@ -18,3 +18,5 @@ Archive of code snippets for making coding easier :)<br/>
   
 - Logic: a series of explaination on how to resolve the most common logic problems in (especially scientific) programming<br>
   - <b>Numbers:</b> operations on numbers
+
+- Security: tips and guides for bug bounty hunting and web app security (based on HolyBugx/HolyTips)<br>
