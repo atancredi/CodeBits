@@ -1,3 +1,15 @@
+//variable is array
+function isArray(arr) {
+    if (typeof (arr) == "object" && Array.isArray(arr)) return true;
+    else return false;
+}
+
+//variable is object
+function isObject(arr) {
+    if (typeof (arr) == "object" && !(Array.isArray(arr))) return true;
+    else return false;
+}
+
 //Find the lenght of an ARRAY
 function lenght(array) {
     var len = 0;
