@@ -6,7 +6,7 @@ Archive of code snippets for making coding easier :)<br/>
 <i>It can now be added on every page via JSDelivr via <a href="https://cdn.jsdelivr.net/gh/atancredi/CodeBits/atancredi.js">this</a> link</i>
 
 - DataManipulation: serialization of data, evaluation of arrays and objects<br>
-  - <b>empty.js:</b> states if an array or class - as well as every other nested object - is empty
+  - <b>empty.js:</b> states if an array or class, as well as every other nested object, is empty
   - <b>JsonParser.py:</b> conversion between JSON and XLSX, XML, CSV etc. etc.
   - <b>sqlite.py:</b> library for efficient management of local sqlite dbs in python apps
 
