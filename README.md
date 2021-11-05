@@ -2,7 +2,8 @@
 Archive of code snippets for making coding easier :)<br/>
 <i>Created by Alessandro Tancredi in 2021</i>
 
-- <b>atancredi.js:</b> is a collection of JS functions that I usually use in my everyday programming
+- <b>atancredi.js:</b> is a collection of JS functions that I usually use in my everyday programming<br>
+it can now be added on every page via JSDelivr via <a href="https://cdn.jsdelivr.net/gh/atancredi/CodeBits/atancredi.js">this</a> link
 
 - DataManipulation: serialization of data, evaluation of arrays and objects<br>
   - <b>empty.js:</b> states if an array or class - as well as every other nested object - is empty
