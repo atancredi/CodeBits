@@ -1,4 +1,4 @@
-# CodeBits
+# CodeBits<br />
 Archive of code snippets for making coding easier :)<br/>
 <i>Created by Alessandro Tancredi in 2021</i>
 
