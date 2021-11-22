@@ -1,0 +1,21 @@
+Whenever a browser needs a file that is hosted on a web server, the browser requests the file via HTTP. When the request reaches the correct (hardware) web server, the (softaware) HTTP server accepts the requests, finds the requested document and sends it back to the browser, also through HTTP. (If the server doesn't find the requested document it returns a 404 response instead).
+A web serve can be either static or dinamic:
+-A static web server consists of a comuputer with an HTTP server installed.
+-A dynamic web server consists of a static web server plus extra software, like  an application server and a database. It is called dynamic because the application server updates the hosted files before sending content to the browser via HTTP.
+
+############################################################################
+#HTTP Protocol - HyperText Transfer Protocol
+It specifies how to transfer hypertext between two computers.
+A protocol is a set of rules for communication between two computers.
+HTTP is a textual, stateless protocol:
+-Textual: all commands are plain-text and human-readable
+-Stateless: Neither the server nor the client remember previous communications.
+
+#General rules of behaving
+-Only clients can make HTTP requests and only to servers.
+Servers can only respond to a client's HTTP request.
+-When requesting a file via HTTP, clients must provide the file's URL.
+-The web server MUST answer every HTTP request at least with an error message.
+
+#Process of a server responding to a request
+-The HTTP srever first checks if the requested URL matches an ex

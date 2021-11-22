@@ -1,0 +1,116 @@
+Sono una via di mezzo tra un sito web ed un'app per mobile
+Hanno l'obbiettivo di offrire un'esperienza di navigazione superlativa in termini di performance e semplificazione della navigazione
+L'unica azione da compiere per l'utente è quella di installare l'icona sullo smartphone come bookmark
+
+Requisiti che il sito deve avere per essere definito una PWA:
+	-Protocollo SSL attivo
+	-Sito responsive
+	-Presenza del Service Worker e funzionamento offline
+	-Presenza del file manifest
+	-Prestazioni e velocità del sito su reti lente al primo avvio (3g)
+	-Cross Browser
+	-URL puliti e raggiungibili
+
+Passi da eseguire:
+	-Creazione del file manifest.json
+	-Creazione e installazione del Service Worker
+
+Creazione del file manifest:
+	Contiene tutte le informazioni di base della PWA
+	-esempio:
+		{
+		"manifest_version": 1,
+		"version": "1.0.0",
+		"short_name": "NOME",
+		"name": "sitoweb.it",
+		"description": "Descrizione",
+		"icons": [
+		{
+		"src": "path/512x512.png",
+		"sizes": "512x512",
+		"type": "image/png"
+		},
+		{
+		"src": "path/384x384.png",
+		"sizes": "384x384",
+		"type": "image/png"
+		}
+		],
+		"start-url": ".",
+		"lang": "it-IT",
+		"background_color": "(color)",
+		"theme-color": "(color)",
+		"display": "standalone",
+		"orientation": "portrait-primary"
+		}
+	
+	Informazioni da dichiarare:
+	-versione del manifest
+	-nome abbreviato (quello che compare sotto l'icona)
+	-descrizione
+	-tutti i formati delle icone
+		Formati:
+		512x512
+		384x384
+		192x192
+		152x152
+		144x144
+		128x128
+		96x96
+		72x72
+	-la prima pagina della PWA
+	-la lingua
+	-i colori da utilizzare per personalizzare il browser
+	 (ovvero background e colore del tema)
+	-tipologia del display
+	-orientamento
+	
+	Per implementarla bisogna inserire tra i tag <head>:
+		<link rel="manifest" href="/manifest.json">
+		<meta name="theme-color" content="(color)">
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="images/152x152.png">
+		<meta name="apple-mobile-web-app-capable" content="yes"> 
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="PWA Esempio">
+		<meta name="application-name" content="PWA Esempio" />
+		<meta name="msapplication-TileImage" content="images/144x144.png"> 
+		<meta name="msapplication-TileColor" content="#cc194b">
+	
+	Il file manifest deve trovarsi nella root del sito
+	
+Creazione e installazione del Service Worker
+	Esso consente di offrire i contenuti anche offline
+	Utilizza API asincrone
+	Include funzionalità come notifiche push, gestione della cache, navigazione offline e sincronizzazione in background
+	
+	Semplice esempio: (codice js, service-worker.js)
+		var cacheName = 'pwa-nomesito';
+		var filesToCache = [
+		'/',
+		'/index.html',
+		'/css/stylesheet.css',
+		'/images/pwa-logo.svg',
+		'/js/core.js'
+		];
+		self.addEventListener('install, function(e){
+		e.waitUntil(
+		caches.open(cacheName).then(function(response){
+		return response || fetch(e.request);
+		})
+		);
+		});
+	
+	Va posizionato nella root principale del sito, insieme al manifest
+	
+	Inserire lo script direttamente nella pagina, subito prima della chiusura del body
+		<script async>
+		window.onload = () => {
+		'use strict';
+		if('servceWorker' in navigator){
+		navigator.serviceWorker
+		.register('./service-worker.js');
+		}
+		}
+		</script>
+	

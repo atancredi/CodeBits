@@ -1,0 +1,171 @@
+It is a markup language that tells web browsers how to structure the web pages that is being visited.
+
+############################################################################
+#Elements:
+HTML consists of a series of elements, the tags (<...> for opening and </...> for closing), that encloses different parts of the content and specify their behaviour.
+Tags in HTML are case-insensitive (<body> = <BODY>).
+An element is structured by an opening tag, its content and the related closing tag.
+Elements can be 'nested': they can be placed within other elements, but tags have to open and close in a way that they are inside or outside one another.
+There are two categories of elements (those should not be confused with the types of CSS boxes):
+	block-level elements:
+		form a visible block on a page.
+		It appears on a new line following the content that precedes it.
+		Any content that follows a block-level element appears on a new line.
+		(due to default CSS styling)
+	inline elements:
+		contained within block-level elements.
+		It will not cause a new line to appear in the document.
+There are elements consisting of a single tag: the empty or void elements.
+Elements can have attributes:
+	(ie) <a href=""></a>
+	An attribute has a name and a value, written in the above syntax.
+	Attributes can also be without values: they are called boolean attributes.
+	Single and double quotes are equivalent, but they shouldn't be mixed.
+
+############################################################################
+#Anatomy of an HTML document
+1. <!DOCTYPE html>:
+	links to a set of rules that the HTML page had to follow to be considered good.
+	<!DOCTYPE html> is the shortest string of characters that counts as valid doctype.
+2. <html></html>: root element
+	the attribute lang="en-US" (for example) sets the primary language of the document
+	(Note: the attribute lang can also be applied to other elements)
+3. <head></head>
+	container for everything that needs to be included but not showed to the user.
+	<title></title> sets the title of the page and should be included in head too
+	An important part of the meta tag is the <meta>:
+		<meta charset="utf-8"> specifies the character set for the document
+		<meta name="author" content"AUTORE">
+		<meta name="description" content="DESCRIZIONE">
+		specifying author and description and including relevant keywords into them may lead to higher position in relevant searches (Search Engine Optimization)
+		<meta name="keywords" content=""> is ignored by search engines
+		<meta property="og:image" content="">,
+		<meta property="og:description" content="">,
+		<meta property="og:title" content=""> are tags specific for Facebook Optimization
+		<meta name="twitter:title" content=""> is specific for Twitter
+	A part important as well is the <link> tag:	
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		it specifies the favicon that must be shown in the browser.
+		also icons for bookmarking and progress web app making are specified in this way
+		<link rel="stylesheet" href="file.css"> applies a CSS stylesheet to the page
+	<script src="file.js" defer></script> loads a JavaScript script into the page
+	The attribute async/defer deines the script loading strategy.
+	With 'async' the script gets downloaded asynchronously and executed as soon as it's donwloaded.
+	With 'defer' the script gets downloaded asynchronously but executed only when the document parsing is completed, so the scripts will run in the order as they are called. (for example if using jQuery, defer needs to be enabled to make sure the dependancies runs before the script depending on them)
+	Keeping the scripts right before the closing of the body tag is best practice, but the general strategy is to use async when possible and then defer when async is not possible.
+	If your scripts should be run immediately and they don't have any dependencies, then use async.
+	If your scripts need to wait for parsing and depend on other scripts and/or the DOM being in place, load them using defer and put their corresponding <script> elements in the order you want the browser to execute them.
+4. <body></body>:
+	This contains all the content that displays on the page
+
+############################################################################
+#Basic sections of a document
+Header: <header>
+	Usually a big strip across the top containing the logo, a big heading and even a tagline.
+	If it is child of a <body> tag it defines the global header of a webpage, if it's a child of <article> or <section> it defines the specific header for that section or article
+Navigation bar: <nav>
+	Links to the site's main sections (contains the main navigation functionality for the page):
+	it can be part of the header but separate the two is better for accessibility and SEO positioning.
+Main content: <main>
+	<main> has to be used only once per page and put inside <body>, possibly not nested within other elements.
+	Content subsection are represented by <article>, <section> and <div> elements.
+	<article> encloses a block of content that makes sense on its own without the rest of the page
+	It is possible to break <article>s into different <section>s and vice versa.
+Sidebar: <aside>
+	Often placed into <main>.
+	Content that is not directly related to the main content but can provide additional information indirectly related to it.
+	It may provide peripheral info or a secondary navigation system.
+	It is not necessary to include one in the page, it depends on the specific case.
+Footer: <footer>
+	It generally contains fine print, copyright notices or contact info.
+	Providing links for quick access to popular content is a very effective practice in SEO.
+There are also 'non-semantic' wrappers:
+	<div> is a block-level non-semantic element
+	It is used when there isn't a better semantic block element to wrap the content or when don't want to add any specific meaning.
+	<span> is an inline non-semantic element.
+	It is used when there isn't a better semantic text element to wrap the content or when don't want to add any specific meaning.
+
+############################################################################	
+#Headings and paragraphs
+There are six heading tags: <h1> to <h6>
+	-it is good to use a single <h1> tag per page as that's the top level heading
+	-make sure to use the headings in the correct order in the hierarchy
+	-it's preferable to use no more than three heading levels per page, unless necessary, in order to avoid the page to become difficult to navigate
+	-users looking at a web page tend to scan quickly to find relevant content, often just reading the headings
+	-IMPORTANT (SEO): search engine while indexing a page consider the contents of headings as important keywords for influencing the page's search rankings (without headings the page is not well optimized for search engines)
+	-using correctly the headings and delivering the most significant content in the most direct way is important in terms of accessibility of the page. (i.e. screen readers ofter provides an outline of the document by reading out the headings)
+	Heading tags has 'semantic' meaning: the browser will detect his meaning (a top level heading for <h1>) and apply the necessary rules. An <h1> can also be obtained with: <span style="font-size: 32px; margin: 21px 0; display: block;">Is this a top level heading?</span>, but it doesn't bring the benefits in terms of SEO and accessibilityas the relevant HTML tag.
+Line breaks and horizontal rules:
+	<br> create a line break in the paragraph
+	<hr> create a horizontal rule in the document that denotes a thematic change in the text.
+Lists:
+	They can be ordered (<ol>) or unordered (<ul>).
+	The elements of the list are wrapped in the <li> tag
+	Lists can be nested, also between different types.
+	There are also the 'description' lists (<dl>):
+		each term is wrapped in a <dt> (description term) and each description is wrapped in a <dd> (description definition). For example:
+		<dl>
+			<dt>Description Term</dt>
+			<dd>Description Definition</dd>
+		</dl>
+		It is permitted to have a single term with multiple descriptions
+Emphasis and importance:
+	<em> is the tag used to give emphasis to a string.
+	Browsers style this as italic by default, but it's different than <i>
+	<strong> is the tag used to underline important words or parts of the text
+	it behaves by default like the <b> tag but it's quite not the same.
+	<em> and <strong> can be nested
+	Elements like <b>, <i> and <u>, which only affect presentation and not semantics, are known as presentational elements and should no longer be used because, as we've seen before, semantics is so important to accessibility, SEO, etc.
+Quotations:
+	<blockquote cite="link to the source">
+	The browser will render this as an indented paragraph.
+	<q cite=""> is intended for short quotations that don't require paragraph breaks.
+	<cite> is meant to contain the title of the resource being quoted
+Abbreviations:
+	<abbr title=""> shows the title of the abbreviation when mouse hover
+Marking up contact details:
+	<address>, useful for SEO indexing
+Superscript and subscript (indexes and exponents):
+	<sup> writes an exponent
+	<sub> writes an index
+Representing computer code:
+	<code> marks up generic pieces of computer code
+	<pre> for rendering the whitespace indentically to how it's seen in the text editor
+	<var> specifically marks up variable names
+	<kbd> specifically marks up keyboard and other types of input entered into the computer
+	<samp> marks out the generic output of a computer program
+Marking up times and dates:
+		<time datetime="2016-01-20">20 January 2016</time>
+		it attaches an unambiguous machine-readable time/date, that can be easily parsed by other pieces of code.
+
+############################################################################
+#Hyperlinks
+An useful attribute to add to links is title: it contains additional information about the link, such as which kind of information the page contains, or things to be aware of on the web site.
+The title on the other hand is only shown on mouse hover, so it won't be seen on mobile. It is important to make the information accessible by all the possible users.
+Almost any content (includin block-level elements) can be made into a link.
+In the path: ./ is the root of the website and ../ moves up a folder
+Anchors:
+	When a block-level element has an 'id' attribute, the user can be redirected to that element with an 'anchor' link: <a href="#id"></a>
+	The syntax can be used as it is for linking to an element in the same page or also be applied to links that carry to different pages.
+Descriptive link text is important for search engine optimization and because the average user tend to skim over the page rather than reading the whole text, so they end up being attracted by page features that stand out, like links.
+The link text should also be as short as possible.
+Make sure to avoid that copies of the same text are links to different pages as it may confuse the user.
+The download attribute:
+	Useful when linking to a resource that's to be downloaded and not opened in the browser: the attribute download="" provides a default save filename.
+Mailto:
+	It is used to start by clicking a link the operation of sending an email using the user's preferred client.
+	<a href="mailto:?cc=&bcc=&subject=&body=">
+	the values of each field must be URL-encoded, percent-escaping the non-printing characters such as %20 for the whitespace
+	This is the standard URL query notation, also used by the GET method.
+
+#Multimedia content
+Images <img>:
+	It is good practice to include an alt="" attribute to the <img> tag: that is a textual description of the image for use in situations where the image cannot be seen/displayed or takes a long time to render because of a slow internet connection. Again it is really useful for SEO and accessibility
+
+W3C MARKUP VALIDATION SERVICE
+https://validator.w3.org/
+	
+############################################################################
+Sources:
+-Mozilla Developers Network
+-www.digitalocean.com for 'Async vs Defer' script loading
