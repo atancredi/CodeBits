@@ -1,0 +1,19 @@
+This approach seeks to simplify interfaces by removing unnecessary elements or content that does not support user tasks.
+
+EXAMPLES ARE FOUND IN THE DESIGN RESOURCES FOLDER
+
+-Flat patterns and textures
+	no use of highlights, shadows, gradients or textures that make UI elements glossy or three-dimensional
+	this applies to textures, icons or graphics in an interface (it is not the same as minimalistic, because the concept applies to the design of the layout in general. So a design can be flas without being minimalist.
+	-NOTE:
+		Flat buttons or links may be difficult to be recognized by the user.
+	THE MAIN DIFFICULTY OF FLAT DESIGN IS THAT IF USED WRONGLY CAN REALLY DEGRADE THE USER EXPERIENCE
+
+-Color palette
+	Color is used strategically to create visual interest or direct attention without adding any additional design elements or actual graphics.
+	Obviously, with less visual information the user is more influenced by the color palettes and notices them more.
+	Most websites use a monochromatic palette, but the best choice to me is use a main color - easy and soft on the eye - and 1 or 2 stronger colors as an accent, to highlight (with parsimony) the most important elements (like clickable ones).
+	Those should highlight primary actions that the user should do (use accent and contrast to convey the user into doing the actions you want) or very important information.
+	The most attention on the accented contents is given by an high contrast between the main color and the accent color.
+	
+	
