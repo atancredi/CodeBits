@@ -1,0 +1,88 @@
+Types of operators:
+	Arithmetic
+	Relational
+	Logical
+	Bitwise
+	Assignment
+	Miscellaneous
+	
+Arithmetic Operators:
+	(Examples: A=10, B=20)
+	+	Adds two operands							A+B = 30
+	-	Subtracts second operand from the first		A-B = -10
+	*	Multiplies both operands					A*B = 200
+	/	Divides numerator by denominator			A/B = 0.5
+	%	Modulus Operator (remainder of an integer division)
+	++	Increment operator							A++ = 11
+	--	Decrement operator							A-- = 9
+	
+Relational Operators:
+	(Examples: A=10, B=20)
+	==	If the operands are equal or not	(A==B): false
+	!=	If the operands are not equal		(A!=B): true
+	>	Greater than						(A>B): false
+	<	Less than							(A<B): true
+	>=	Greater than or equal to			(A>=B): false
+	<=	Less than or equal to				(A<=B): true
+
+Logical Operators: (works with variables)
+	&&	Logical AND
+		0 && 0 = 0
+		0 && 1 = 0
+		1 && 0 = 0
+		1 && 1 = 1
+	||	Logical OR
+		0 || 0 = 0
+		0 || 1 = 1
+		1 || 0 = 1
+		1 || 1 = 1
+	!	Logical NOT - Reverse the logical state of its operand
+		!1 = 0
+		!0 = 1
+	
+	Compositions (Logic Gates):
+	NAND: AND, NOT
+	NOR:  OR, NOT
+	
+Bitwise Operators:
+	&	Bit-by-bit AND (copies a bit to the result if it exists in both operands)
+		0 & 0 = 0
+		0 & 1 = 0
+		1 & 0 = 0
+		1 & 1 = 1
+	|	Bit-by-bit OR (copies a bit if it exists in either operands)
+		0 | 0 = 0
+		0 | 1 = 1
+		1 | 0 = 1
+		1 | 1 = 1
+	^ 	Bit-by-bit XOR (exclusive OR - copies the bit if it is set in one operand but not both)
+		0 ^ 0 = 0
+		0 ^ 1 = 1
+		1 ^ 0 = 1
+		1 ^ 1 = 0
+	~	Binary Complement (flips the bits)
+		~0 = 1
+		~1 = 0
+	<<	Binary Left Shift Operator
+		the left operands value is moved left by the number of bits specified by the right operand
+	>>	Binary Right Shift Operator
+		the left operands value is moved right by the number of bits specified by the right operand
+
+Assignment Operators:
+	=	Simple assignment operator
+	+=	Add and assignment operator
+	-=	Subtract and assignment operator
+	*=	Multiply and assignment operator
+	/=	Divide and assignment operator
+	%=	Modulus and assignment operator
+	<<=	Left shift and assignment operator
+	>>=	Right shift and assignment operator
+	&=	Bitwise AND assignment operator
+	^=	Bitwise exclusive OR and assignment operator
+	|=	Bitwise inclusive OR and assignment operator
+
+Miscellaneous Operators:
+	sizeof() Returns the size of a variable
+	&		 Returns the address of a variable
+	*		 Pointer to a variable
+	?:		 Conditional expression

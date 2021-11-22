@@ -1,0 +1,87 @@
+1. Intro on machine language
+-GNU tool to examine complied binaries: objdump
+      es: objdump -D a.out | grep -A20 main.:
+      	  prints the machine code 20 lines after the regular expression main.: in AT&T syntax
+	  for Intel sintax: objdump -M intel
+-a byte contains 8 bits and all of them can be either true or false, so a byte has 2^8=256 possible values.
+It is convenient to represent a byte with 2 hexadecimal digits
+-the bits of the machine language is stored into memory, which is a row of byte each with its own memory address. Each byte of memory can be accessed by its address.
+32-bit addressing scheme : 2^32=4,294,967,296 possible addresses
+64-bit addressing scheme: 2^64 possible addresses
+-Assembly language is a collection of mnemonics for the corresponding machine language instructions.
+Unlike compiled languages, assembly instructions have a direct one-to-one relationship with their corresponding machine language instructions.
+Since every processor has different machine language instruction each also has a different form of assembly language.
+-Processor have also some set of special variables called registers. Most of the instructions use these registers to read or write data.
+
+2. x86 Processor
+First ever: Intel 8086 CPU
+Registers:
+    EAX: Accumulator
+    ECX: Counter
+    EDX: Data
+    EBX: Base
+    General purpose registers, they act as temporary variables for the CPU when executing machine instructions
+    ESP: Stack Pointer
+    EBP: Base Pointer
+    called pointers because they store 32-bit addresses pointing to the location in memory
+    ESI: Source Index
+    EDI: Destination Index
+    they are also technically pointers. commonly used to point the source and destination when data needs to be read from or written to
+    EIP: Instruction Pointer register
+    points to the current instruction the processor is reading (IMPORTANT IN DEBUGGING)
+    EFLAGS: several bit flags that are used for comparison and memory segmentations
+-after executing a program and examinating it before the end, EIP register contains a memory address that points to an instruction (shown in bold in gdb function's disassembly). Instruction before this are collectively known as the 'function prologue'
+-SKILL: examine memory with GDB
+the command is x, short for examine, and it can be used to look at certain address of memory.
+it expects two arguments: the location in memory to examine and how to display that memory.
+the display format uses a single-letter shorthand which is optionally preceded by a count of how many items to examine.
+Common format letters:
+    o: display in octal
+    x: display in hexadecimal
+    u: display on unsigned with standard base-10 decimal
+    t: display in binary
+    c: display bytes looking up on the ASCII table automatically
+    s: display an entire string of character data
+Memory pointed by the EIP can be examined by using the address stored in EIP (debugger allows to reference registers directly, so $eip is equivalent to the value EIP contains at the moment).
+The default size for a single unit is a four-byte unit called a word. The size of the display units for the examine command can be changed by adding a size letter to the end of the format letter.
+Valid size letters:
+    b: single byte
+    h: halfword, 2 bytes
+    w: word, 4 bytes
+    g: giant, 8 bytes
+Example:
+    >x/1xw $eip
+The i format letter, short for instruction, displays the memory as disassembled assembly language instructions.
+Example:
+    >x/i $eip
+
+Showing with examine the first four bytes byte by byte has an order, but when a word is examined at the exact same memory address the four bytes are shown in the reversed order. Same thing for passing from byte to halfword.
+    Es: 0xc7, 0x45, 0xfc, 0x00 (bytes) -> 0x45c7, 0x00fc (halfwords) -> 0x00fc45c7 (word)
+This is because in the x86 processor values are stored in little-endian byte order, meaning that the last significant byte is stored first.
+If four bytes are to be interpreted as a single value, the bytes must be used in reverse order
+
+3. Assembly Code, Intel Syntax
+-General assembly instruction:
+    operation <destination>, <source>
+destination and source values can either be a register, a memory address or a value
+-operations:
+    mov: move a value from source to destination
+    sub: subtract
+    inc: increment
+    cmp: compare values
+    lea: load effective address
+    any op. beginning with j is used to jump a different part of the code (depending on the result of the comparison)
+    jle: jump if less than or equal to
+    this op uses the result of the immediately previous comparison, which are stored in the EFLAGS register, to jump EIP to point to a different part of the code if the destination of the previous comparison operation is less than or equal to the source
+    jmp: unconditional jump instruction
+-simple if-then-else control structure:
+    cmp
+    jle -> if less then or equal to
+    jmp -> unconditional jump
+-increment of a variable by 1:
+    lea eax,[ebp-4]
+    inc DWORD PTR [eax]
+    ->lea loads the familian address of EBP-4 into the EAX register
+    ->inc increments the value found at the address now stored in the EAX register by 1
+    ->this behavior corresponds to a portion of C code in which the counter value is incremented in a for loop
+

@@ -1,0 +1,125 @@
+----------------------------------------------------------------
+SIGNED, UNSIGNED, LONG AND SHORT:
+By default numerical values in C are signed, meaning that they can be both negative and positive.
+Unsigned values don't allow negative numbers.
+A 32-bit unsigned integer can contain values from 0 (all binary 0s) to 4,294,967,295 (all binary 1s).
+A 32-bit signed integer can contain values from -2,147,483,648 to 2,147,483,647:
+one of the 32 bits is a flag marking whether the number is positive or negative.
+
+Negative numbers are stored using the two's complement method, a form suited for binary adders.
+When a negative value in two's complement is added to a positive number of the same magnitude, the result is zero.
+This is done by writing the positive number in binary, then inverting all the bits, and finally adding 1.
+
+In C variables can be declared as unsigned by simply prepending the keyword 'unsigned' to the declaration.
+
+The size of numerical variables can be extended or shortened by adding the keywords 'long' or 'short'
+
+----------------------------------------------------------------
+TYPECASTING:
+It is simply a way to temporarily change a variable's data type, despite how it was originally defined.
+When a variable is cast into a different type the compiler is told to treat that variable as if it were the new data type, but only for that operation.
+Syntax:
+	(typecast_data_type) variable
+
+The important thing to remember is that the compiler is the only thing that cares about a variable's type.
+	
+----------------------------------------------------------------
+CONSTANT AND LITERALS:
+constants refer to fixed values that te program may not alter during its execution
+
+----------------------------------------------------------------
+STORAGE CLASSES:
+a storage class defines the scope (visibility) and life-time of variables and/or functions within a C program
+they precede the type that they modify
+
+Storage classes:
+	auto
+	register
+	static
+	extern
+
+Auto:
+	default storage class for all local variables
+
+Register:
+	used to define local variables that should be stored in a register instead of RAM
+	the variable has a maximum size equal to the register size (usually one word)
+	the variable can't have the unary & operator applied to it (as it does not have a memory location)
+	
+	it should only be used for variables that require quick access such as counters
+	
+	using the register storage class means that the variable MIGHT be stored in a register depending on hardware and implementation restrictions
+
+Static:
+	this storage class instructs the compiler to keep a local variable in existence during the life-time of the program
+	instead of creating and destroying it each time it comes into and goes out of the scope.
+	making local variable static allows them to mantain their values between function calls
+	
+	the modifier may also be applied to global variables, causing variable's scope to be restricted to the file in which is declared
+	when static is used on a global variable it causes only one copy of that member to be shared by all the objects of its class
+
+Extern:
+	used to give a reference of a global variable that is visible to ALL the program files
+	when used the variable cannot be initialized because it points tha variable name at a storage location that has been previously defined
+	'extern' is used to declare a global variable or function in another file, so the modifier is commonly used when there are two or more files sharing the same global variables or functions
+	
+	when there are two or more files linked by 'extern', they must be compiled at the same time:
+		gcc 1.c 2.c
+	
+----------------------------------------------------------------
+POINTERS:
+variables which contain the address of some other variables
+declaration: datatype *pointername;
+the type of a pointer depends on the type of the variable it points to
+
+all data is stored in memory. different data types occupy different amount of memory
+sizeof() can be used to determine the number of bytes occupied by each data type
+NB: the sizes are NOT the same for all machine. it is good practice using the sizeof() operator instead of assuming the value
+
+address operations:
+* -> gives the content of the location pointed
+& -> if v is a variable, &v is the address of the variable
+NB: declaration of a pointer also uses '*'
+
+POINTER ARITHMETIC
+(unary pointer arithmetic operators)
+++ -> adds sizeof(datatype) number of bytes to pointer, so that it points to the next entry of the datatype
+-- -> subtracts sizeof(datatype) number of bytes to pointer so that it points to the prevoius entry of the datatype
+(binary operations between a pointer and an integer)
+supponing long *ptr a pointer to a long
+ptr+n is valid if n is int, it advances the pointer by n number of longs.
+      it equals to say that the result is the byte address: ptr + n*sizeof(long)
+ptr-n is similar
+(binary operations between two pointers)
+considering two pointers <datatype> *ptr1, *ptr2
+NB: adding two pointers togheter is not allowed
+ptr1 - ptr2 is allowed as long as they are pointing to elements of the same array
+       	    the result is (ptr1-ptr2)/sizeof(datatype)
+	    in other settings this operation is undefined (so it may or may not give the correct answer)
+subtracting a pointer from another implies all the logic operations: ptr1 <,=,> ptr2
+
+ARRAYS AND POINTERS:
+array names are essentially pointers
+array elements are stored in contiguous locations in memory
+considering int arr[10]:
+    arr is a pointer to the first element of the array
+    *arr is the same as arr[0]
+    arr+i (equal to arr+i*sizeof(int)) is a pointer to arr[i]
+    *(arr+i) is equal to arr[i]
+    &arr[i] returns the address for arr[i]
+
+since pointers are also variables they can be passed as input parameters to functions and as return values from funtions
+it is possible to pass pointers where arrays are expected and vice versa
+
+passing a pointer to data instead of passing the value of the data can be much faster, for example it can reduce the slowdown due to function calling. Although the decision to do this must be taken with care.
+
+Common mistakes of programming with pointers:
+-crossing array boundaries. You can get unpredictable behaviour if calling *(arr+11) or *(arr-1) from an 10-elements array.
+-"Dangling Pointers". Pointers that point to data that is not meaningful. For example using a pointer without initializing it.
+-"Segmentation Fault". 
+
+VOID POINTERS:
+Typeless pointer, defined by the 'void' keyword.
+Pointers cannot be de-referenced unless they have a type.
+So in order to retrieve the value stored in the pointer's memory address, the compiler must first know what type of data is it.
+Void pointers must be typecast before doing pointer arithmetic

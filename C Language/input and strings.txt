@@ -1,0 +1,33 @@
+----------------------------------------------------------------
+COMMAND-LINE ARGUMENTS:
+
+
+----------------------------------------------------------------
+STRING MANIPULATION:
+fgets:
+    char s[100]; //can be any value
+    fgets(s, sizeof(s), stdin);
+    printf("%s", s);
+    //this code saves into s[] what is read from STDIN
+it needs 3 arguments: 1, where the string is gonna be copied; 2, maximum number of characters wanted to save; 3, pointer to a FILE object that identifies an input stream
+STRONGLY RECOMENDED INSTEAD OF gets because it has no way to specify the expected maximum size of the array, so anyone can overflow the buffer with malicious code that will be executed (VERY EXPOSED BREACH)
+
+
+----------------------------------------------------------------
+INPUT MANAGEMENT:
+scanf returns an int which is the number of successfully done conversions, so when it returns zero it means that no acceptable input is inserted.
+The scanf function uses a fraction of the memory called memory buffer, eliminating a character from the buffer and converting the ASCII bits in the useful rappresentation. When doing a strict type conversion (eg. scanf("%d", &c);) and a different type is inserted, the input buffer is not emptied and it returns c=0. If the scanf is in a while cycle, the function will be repeated indefinitely because it finds in the input buffer some other characters and it tries to convert them without success. This problem might be avoided emptying the buffer when an invalid number is inserted:
+    do{
+        c = scanf("%d", &a);
+	if (c == 0) {
+	   scanf("%*[^\n]"); //reads every character apart from the return line \n
+	   //input non valido
+	}
+    } while (c == 0);
+
+advanced scanf conditions:
+scanf("[abcd]", &ch);
+    assuming that ch is a char variable, the scanf will only accept the characters between the brackets: a, b, c and d.
+scanf("[^abcd]", &ch);
+    it is also possible to tell scanf NOT to accept the characters in the brackets. The example will accept every char different to a, b, c or d.
+
