@@ -49,3 +49,8 @@ function format(stringa, array_parametri) {
     return stringa_out;
 
 }
+
+//breakpoint for screen size
+function getScreenRes(){
+		return window.screen.availWidth+"x"+window.screen.availHeight
+}
