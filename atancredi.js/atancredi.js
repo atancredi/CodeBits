@@ -51,6 +51,7 @@ function format(stringa, array_parametri) {
 }
 
 //breakpoint for screen size
-function getScreenRes(){
-		return window.screen.availWidth+"x"+window.screen.availHeight
+function getScreenRes() {
+    return $(window).width() + "x" + $(window).height()
+		//return window.screen.availWidth+"x"+window.screen.availHeight
 }
