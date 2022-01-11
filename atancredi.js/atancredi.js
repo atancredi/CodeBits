@@ -54,3 +54,11 @@ function format(stringa, array_parametri) {
 function getScreenRes() {
     return $(window).width() + "x" + $(window).height()
 }
+
+//addStyle - add styles to a jquery oblect
+function addStyles(obj, styles) {
+    console.log(obj, styles)
+    for (var i = 0; i < lenght(Object.keys(styles)); i++) {
+        obj.css(Object.keys(styles)[i], styles[i]);
+    }
+}
