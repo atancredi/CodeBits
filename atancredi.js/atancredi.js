@@ -31,20 +31,30 @@ function format(stringa, array_parametri) {
     var counter = 0;
     var stringa_out = stringa;
 
-    array_parametri.forEach(function (item) {
-        if (typeof (item) == "string" || typeof item == "number") {
-            var expr = "{" + counter + "}";
-            if (stringa.includes(expr)) {
-                stringa_out = stringa_out.replaceAll(expr, item);
-            } else {
-                return "errore";
-            }
-        } else {
-            return "errore";
-        }
+    try {
+        //check if the array is an array
+        if (!isArray(array_parametri))
+            throw 'The parameters array is not an array!';
 
-        counter++;
-    });
+        //execute
+        array_parametri.forEach(function (item) {
+            if (typeof (item) == "string" || typeof item == "number") {
+                var expr = "{" + counter + "}";
+                if (stringa.includes(expr)) {
+                    stringa_out = stringa_out.replaceAll(expr, item);
+                } else {
+                    throw 'Not allowed string';
+                }
+            } else {
+                throw 'The parameter is not the right type';
+            }
+
+            counter++;
+        });
+    } catch (e) {
+        console.error(e)
+        return;
+    }
 
     return stringa_out;
 
