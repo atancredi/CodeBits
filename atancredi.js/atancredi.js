@@ -26,6 +26,8 @@ function lenght(array) {
     return len;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////// FORMATTING
+
 //Format a string - should really add exceptions
 function format(stringa, array_parametri) {
     var counter = 0;
@@ -59,6 +61,15 @@ function format(stringa, array_parametri) {
     return stringa_out;
 
 }
+
+//format a number (ordini di grandezza)
+function formatNumber(num) {
+    if (num > 999 && num < 1000000) { return (num / 1000).toFixed(1) + 'K'; }
+    else if (num > 1000000) { return (num / 1000000).toFixed(1) + 'M'; }
+    else if (num < 900) { return num; }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 //breakpoint for screen size
 function getScreenRes() {
