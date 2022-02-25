@@ -2,7 +2,7 @@
 Archive of code snippets for making coding easier :)<br/>
 <i>Created by Alessandro Tancredi in 2021</i><br />
 
-- <b>atancredi.js:</b> is a collection of JS functions that I usually use in my everyday programming<br>
+- <b>atancredi.js:</b> is a collection of JS functions that I often use in my everyday programming<br>
 <i>It can now be added on every page via JSDelivr via <a href="https://cdn.jsdelivr.net/gh/atancredi/CodeBits/atancredi.js/atancredi.js">this</a> link</i><br /><br />
 
 - DataManipulation: serialization of data, evaluation of arrays and objects
